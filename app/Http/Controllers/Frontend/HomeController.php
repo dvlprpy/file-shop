@@ -10,8 +10,8 @@ class HomeController
 {
     public function index()
     {
-        $file = File::all();
-        $package = Package::all();
-        return view('frontend.index', compact('file', 'package'));
+        $files = File::paginate(10);       // 10 فایل در هر صفحه
+        $packages = Package::paginate(10); // 10 پکیج در هر صفحه
+        return view('frontend.index', compact('files', 'packages'));
     }
 }

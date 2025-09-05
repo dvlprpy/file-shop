@@ -6,12 +6,32 @@ use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PlanController;
+use App\Http\Controllers\Frontend\FrontEndFileController;
+use App\Http\Controllers\Frontend\FrontEndPackageController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Models\Package;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use PHPUnit\Framework\Attributes\Group;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::group(['namespace' => 'Frondend'], function () {
+
+    Route::get('/file/{file_id}', [FrontEndFileController::class, 'detail'])->name('frontend.file.detail');
+    Route::get('/package/{package_id}', [FrontEndPackageController::class, 'detail'])->name('frontend.package.detail');
+    Route::get('/file/{id}/thumbnail', [FrontEndFileController::class, 'privateThumbnail'])
+     ->name('files.private.thumbnail');
+
+     // Load more فایل‌ها
+    Route::get('/files/load_more', [FrontEndFileController::class, 'loadMore'])->name('frontend.files.load_more');
+
+    // Load more پکیج‌ها
+    Route::get('/packages/load_more', [FrontEndPackageController::class, 'loadMore'])->name('frontend.packages.load_more');
+
+});
+
+
 
 Route::get('/admin', function () {
     return view('admin.dashboard.index');

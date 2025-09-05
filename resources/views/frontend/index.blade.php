@@ -1,17 +1,13 @@
 @extends('layouts.home')
 
-
-@section('content')
-    @include('frontend.HomeSection.content', ['file' => $file, 'package' => $package])
+@section('desc')
+    @include('frontend.HomeSection.desc')
 @endsection
 
+@section('content')
+    @include('frontend.HomeSection.content', ['files' => $files, 'packages' => $packages])
+@endsection
 
 @section('footer')
     @include('frontend.HomeSection.footer')
-@endsection
-
-
-
-@section('desc')
-    @include('frontend.HomeSection.desc')
 @endsection
