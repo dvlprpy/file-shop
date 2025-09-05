@@ -27,6 +27,7 @@ Homestead.yaml
 # IDE / OS
 /.idea
 /.vscode
+/.cursor
 /.DS_Store
 Thumbs.db
 /.fleet
