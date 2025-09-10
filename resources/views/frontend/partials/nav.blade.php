@@ -7,7 +7,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0 flex-grow-1 justify-content-center">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">خانه</a>
+          <a class="nav-link active" aria-current="page" href="{{ route('home') }}">خانه</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">سبد خرید</a>

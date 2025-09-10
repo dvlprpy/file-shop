@@ -1,1 +1,82 @@
+.hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2) !important;
+    transition: all 0.3s ease;
+}
 
+.hover-scale:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease-in-out;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+
+/* Card Home Page Style: / */
+.card-3d {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.card-3d:hover {
+    transform: perspective(1000px) rotateY(5deg) rotateX(5deg) scale(1.03);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+}
+
+.btn-3d {
+    transition: all 0.2s ease-in-out;
+    border-radius: 10px;
+}
+
+.btn-3d:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+}
+
+.btn-3d:active {
+    transform: translateY(2px);
+    box-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.2);
+}
+
+p.p-desc {
+    padding: 50px;
+    font-size: x-large;
+    text-transform: capitalize;
+    text-align: left;
+}
+
+
+
+
+/* Plan Style: /plan */
+.plan-card {
+    transition: all 0.3s ease-in-out;
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.plan-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+}
+
+.plan-card img {
+    height: 180px;
+    object-fit: cover;
+}
+
+.plan-card .card-body {
+    text-align: center;
+}
+
+.plan-card .btn {
+    border-radius: 30px;
+    font-weight: bold;
+}

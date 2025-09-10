@@ -71,30 +71,7 @@
 </div>
 @endif
 
-{{-- استایل کارت و دکمه 3D --}}
-<style>
-    .card-3d {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border-radius: 15px;
-        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    .card-3d:hover {
-        transform: perspective(1000px) rotateY(5deg) rotateX(5deg) scale(1.03);
-        box-shadow: 0 15px 30px rgba(0,0,0,0.2);
-    }
-    .btn-3d {
-        transition: all 0.2s ease-in-out;
-        border-radius: 10px;
-    }
-    .btn-3d:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-    }
-    .btn-3d:active {
-        transform: translateY(2px);
-        box-shadow: inset 0 3px 5px rgba(0,0,0,0.2);
-    }
-</style>
+
 
 {{-- JS برای Load More --}}
 <script>

@@ -4,16 +4,23 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Package;
+use App\Models\User;
 use Illuminate\Http\Request;
+use App\Utility\SubscriptionChecker;
 
 class FrontEndPackageController extends Controller
 {
+    /* show Pakcage Details */
     public function detail(Request $request, $package_id)
     {
         $package = Package::find($package_id);
-        return view('frontend.files.detail' , compact('package'));
+        $userId = 5; /* Pass Fack User id  */
+        $subscription = SubscriptionChecker::checkUserSubscription($userId); /* Check User Subscribe */
+        return view('frontend.files.detail' , compact('package', 'subscription'));
     }
 
+
+    /* Package LoadMore */
     public function loadMore(Request $request)
     {
         $packages = Package::paginate(10);
@@ -27,4 +34,10 @@ class FrontEndPackageController extends Controller
     }
 
 
+
+    /* Package Download */
+    public function download(Request $request, $package_id)
+    {
+        // 
+    }
 }

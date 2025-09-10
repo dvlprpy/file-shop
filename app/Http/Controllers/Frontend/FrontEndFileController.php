@@ -4,16 +4,23 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\File;
+use App\Models\User;
 use Illuminate\Http\Request;
-
+use App\Utility\SubscriptionChecker;
 class FrontEndFileController extends Controller
 {
+
+    /* File Details */
     public function detail(Request $request, $file_id)
     {
         $file = File::find($file_id);
-        return view('frontend.files.detail', compact('file'));
+        $user_id = 5; /* user id */
+        $subscription = SubscriptionChecker::checkUserSubscription($user_id); /* check user subscribe */
+
+        return view('frontend.files.detail', compact('file', 'subscription'));
     }
 
+    /* get File Private Path */
     public function privateThumbnail($id)
     {
         $file = File::findOrFail($id);
@@ -33,6 +40,8 @@ class FrontEndFileController extends Controller
         ]);
     }
 
+
+    /* File Load More */
     public function loadMore(Request $request)
     {
         $files = File::paginate(10);
@@ -47,4 +56,9 @@ class FrontEndFileController extends Controller
     }
 
 
+    /* Download File */
+    public function download(Request $request, $file_id)
+    {
+        
+    }
 }

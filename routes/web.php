@@ -13,6 +13,8 @@ use App\Models\Package;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
+use App\Http\Controllers\Frontend\FakeGatewayController;
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -29,6 +31,25 @@ Route::group(['namespace' => 'Frondend'], function () {
     // Load more پکیج‌ها
     Route::get('/packages/load_more', [FrontEndPackageController::class, 'loadMore'])->name('frontend.packages.load_more');
 
+
+    /* Download File */
+    Route::get('/file/{file_id}/download', [FrontEndFileController::class, 'download'])->name('frontend.file.download');
+    
+    /* Download Package */
+    Route::get('/package/{package_id}/download', [FrontEndFileController::class, 'download'])->name('frontend.package.download');
+
+
+    /* list of Active plan */
+    Route::get('/plan', [HomeController::class, 'planBuy'])->name('frontend.plan.buy');
+
+
+    /* purchase plan */
+    Route::get('/plan/{plan_id}/purchase', [HomeController::class, 'purchase'])->name('frontend.plan.purchase_plan');
+
+    
+    /* Payment GateWay */
+    Route::get('/fake-gateway/show/{plan_id}', [FakeGatewayController::class, 'show'])->name('fake.gateway.show');
+    Route::post('/fake-gateway/pay', [FakeGatewayController::class, 'pay'])->name('fake.gateway.pay');
 });
 
 
