@@ -22,8 +22,8 @@
       <div class="d-flex">
 
         @guest
-          <a class="btn btn-outline-success me-2 ms-2" href="{{ route('login.form') }}">ورود</a>
-          <a class="btn btn-success" href="{{ route('register.form') }}">ثبت نام</a>
+          <a class="btn btn-outline-success me-2 ms-2" href="{{ route('frontend.login.form') }}">ورود</a>
+          <a class="btn btn-success" href="{{ route('frontend.register.form') }}">ثبت نام</a>
         @endguest
 
         @auth
@@ -35,14 +35,13 @@
             </span>
             <div class="dropdown-menu">
               <span>
-                <a href="{{ route('user.dashboard') }}" class="dropdown-item">داشبورد مدیریتی</a>
+                <a href="{{ route('frontend.user.dashboard') }}" class="dropdown-item">داشبورد مدیریتی</a>
               </span>
               <hr class="dropdown-divider">
-              <span class="d-flex flex-row justify-content-center align-items-center">
-                <a class="btn btn-danger" href="{{ route('logout') }}">
-                  خروج
-                </a>
-              </span>
+              <form action="{{ route('frontend.logout') }}" method="POST" class="d-flex justify-content-center">
+                @csrf
+                <button type="submit" class="btn btn-danger w-100">خروج</button>
+              </form>
             </div>
           </div>
         @endauth

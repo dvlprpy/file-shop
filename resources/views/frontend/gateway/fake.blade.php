@@ -16,7 +16,7 @@
                 </li>
             </ul>
 
-            <form action="{{ route('fake.gateway.pay') }}" method="POST" class="row g-3">
+            <form action="{{ route('frontend.fake.gateway.pay') }}" method="POST" class="row g-3">
                 @csrf
                 <input type="hidden" name="plan_id" value="{{ $plan->plan_id }}">
 

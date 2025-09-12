@@ -9,6 +9,7 @@ use App\Models\Plan;
 use App\Models\Subscribe;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 
@@ -30,7 +31,7 @@ class FakeGatewayController extends Controller
         $plan = Plan::findOrFail($data['plan_id']);
 
         // دریافت کاربر (در صورت لاگین نکردن، شبیه‌سازی)
-        $userId = auth()->id() ?? rand(1, 12);
+        $userId = Auth::user()->user_id;
 
         // تولید شماره تراکنش و رفرنس
         $ref = strtoupper(Str::uuid()->toString());

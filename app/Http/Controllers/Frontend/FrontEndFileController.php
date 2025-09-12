@@ -8,6 +8,7 @@ use App\Models\Subscribe;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Utility\SubscriptionChecker;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
 class FrontEndFileController extends Controller
@@ -17,9 +18,8 @@ class FrontEndFileController extends Controller
     public function detail(Request $request, $file_id)
     {
         $file = File::find($file_id);
-        $user_id = 5; /* user id */
+        $user_id = Auth::user()->user_id; /* user id */
         $subscription = SubscriptionChecker::checkUserSubscription($user_id); /* check user subscribe */
-        // dd($subscription);
         return view('frontend.files.detail', compact('file', 'subscription'));
     }
 
@@ -60,61 +60,10 @@ class FrontEndFileController extends Controller
 
 
     /* Download File */
-    /* public function download(Request $request, $file_id)
-    {
-        $file = File::findOrFail($file_id);
-
-        $user = 5;
-
-        $subscribe = Subscribe::where('subscribe_user_id', $user)->firstOrFail();
-
-
-        // گرفتن آخرین اشتراک کاربر
-        $subscription = SubscriptionChecker::checkUserSubscription($user);
-        
-
-        // چک فعال بودن
-        if (!$subscription['status']) {
-            return redirect()->route('frontend.plan.buy')
-                            ->with('error', 'اشتراک فعال ندارید. لطفا اشتراک بخرید.');
-        }
-
-
-        // چک تعداد دانلود
-        if ($subscribe->subscribe_download_count >= $subscribe->subscribe_download_limit) {
-            return redirect()->route('frontend.plan.buy')
-                            ->with('error', 'سقف دانلود شما به پایان رسیده است.');
-        }
-
-
-        // چک تاریخ انقضا
-        if (now()->gt($subscribe->subscribe_expired_at)) {
-            return redirect()->route('frontend.plan.buy')
-                            ->with('error', 'اشتراک شما منقضی شده است.');
-        }
-
-
-        // ✅ همه چیز اوکی → افزایش شمارنده دانلود
-        Subscribe::where('subscribe_id', $subscribe->subscribe_id)
-            ->increment('subscribe_download_count');
-
-        // هندل کردن visibility فایل
-        switch ($file->visibility) {
-            case 'public':
-                return Storage::disk('public')->download($file->path, $file->file_original_name);
-            case 'private':
-                $fullpath = storage_path('app/private/' . str_replace('/', DIRECTORY_SEPARATOR, $file->path));
-                return response()->download($fullpath, $file->file_original_name);
-            default:
-                abort(403, 'نوع فایل نامشخص است.');
-        }
-    } */
-
-    /* Download File */
     public function download(Request $request, $file_id)
     {
         $file = File::findOrFail($file_id);
-        $user = 5; // اینجا باید شناسه کاربر واقعی باشه
+        $user = Auth::user()->user_id; 
 
         // گرفتن آخرین اشتراک کاربر
         $subscription = SubscriptionChecker::checkUserSubscription($user);

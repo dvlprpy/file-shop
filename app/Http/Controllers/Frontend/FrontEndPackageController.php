@@ -7,6 +7,7 @@ use App\Models\Package;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Utility\SubscriptionChecker;
+use Illuminate\Support\Facades\Auth;
 
 class FrontEndPackageController extends Controller
 {
@@ -14,7 +15,7 @@ class FrontEndPackageController extends Controller
     public function detail(Request $request, $package_id)
     {
         $package = Package::find($package_id);
-        $userId = 5; /* Pass Fack User id  */
+        $userId = Auth::user()->user_id; /* Pass Fack User id  */
         $subscription = SubscriptionChecker::checkUserSubscription($userId); /* Check User Subscribe */
         return view('frontend.files.detail' , compact('package', 'subscription'));
     }

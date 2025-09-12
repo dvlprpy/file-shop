@@ -20,7 +20,7 @@
                 <p class="text-muted small">خوش برگشتی! لطفا اطلاعات خود را وارد کنید.</p>
             </div>
 
-            <form action="{{ route('login') }}" method="post">
+            <form action="{{ route('frontend.login') }}" method="post">
                 @csrf
 
                 {{-- Email --}}
@@ -68,7 +68,7 @@
             <div class="text-center mt-4">
                 <p class="small mb-0">
                     حساب کاربری ندارید؟
-                    <a href="{{ route('register.form') }}" class="fw-bold text-decoration-none">ثبت‌نام کنید</a>
+                    <a href="{{ route('frontend.register.form') }}" class="fw-bold text-decoration-none">ثبت‌نام کنید</a>
                 </p>
             </div>
         </div>

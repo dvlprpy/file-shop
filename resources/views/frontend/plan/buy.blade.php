@@ -36,7 +36,7 @@
                         </li>
                     </ul>
                     <div class="card-body">
-                        <a href="{{ route('frontend.plan.purchase_plan', $plan->plan_id ) }}" 
+                        <a href="{{ route('frontend.plan.purchase', $plan->plan_id ) }}" 
                             class="btn btn-primary w-100">🚀 خرید پلن</a>
                     </div>
                 </div>

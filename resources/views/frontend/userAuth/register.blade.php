@@ -17,7 +17,7 @@
         <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%; border-radius: 1rem;">
             <h3 class="text-center mb-4">ثبت‌نام</h3>
 
-            <form action="{{ route('register') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('frontend.register') }}" method="post" enctype="multipart/form-data">
                 @csrf
 
                 {{-- fullname --}}
@@ -80,7 +80,7 @@
 
                 {{-- login redirect --}}
                 <p class="text-center mt-3 mb-0">
-                    قبلاً حساب کاربری ساخته‌اید؟ <a href="{{ route('login.form') }}">وارد شوید</a>
+                    قبلاً حساب کاربری ساخته‌اید؟ <a href="{{ route('frontend.login.form') }}">وارد شوید</a>
                 </p>
             </form>
         </div>

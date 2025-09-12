@@ -86,7 +86,7 @@
 
             {{-- دکمه خرید --}}
             <div class="text-center p-4">
-                <form action="{{ route('fake.gateway.show', $plan_purch->plan_id ) }}" method="get">
+                <form action="{{ route('frontend.fake.gateway.show', $plan_purch->plan_id ) }}" method="get">
                     <button class="btn btn-success plan-buy-btn-style">✅ تایید و انتقال به درگاه پرداخت</button>
                 </form>
             </div>
