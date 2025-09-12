@@ -19,6 +19,7 @@ use App\Http\Controllers\Frontend\LogoutController;
 use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Middleware\AdminMiddleWare;
+use App\Http\Middleware\userDashboardMiddleWare;
 
 /* User Routes */
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -46,7 +47,7 @@ Route::group([], function () {
     /* -------------------------------
      | User Dashboard
      ------------------------------- */
-    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('frontend.user.dashboard');
+    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('frontend.user.dashboard')->middleware(userDashboardMiddleWare::class);
 
 
     /* -------------------------------
@@ -94,7 +95,7 @@ Route::group([], function () {
 | Prefix: /admin
 | Middleware: auth, AdminMiddleWare
 ---------------------------------------*/
-Route::group(['prefix' => 'admin', 'middleware' => ['auth', AdminMiddleWare::class]], function () {
+Route::group(['prefix' => 'admin', 'middleware' => [AdminMiddleWare::class]], function () {
 
     /* 🔹 Dashboard */
     Route::get('/', function () {

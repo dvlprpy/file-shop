@@ -34,9 +34,15 @@
               <span>خوش آمدید</span>
             </span>
             <div class="dropdown-menu">
-              <span>
-                <a href="{{ route('frontend.user.dashboard') }}" class="dropdown-item">داشبورد مدیریتی</a>
-              </span>
+              @if (\Illuminate\Support\Facades\Auth::check() && \Illuminate\Support\Facades\Auth::user()->role === 'adminsystem')
+                <span>
+                  <a href="{{ route('admin.dashboard.index') }}" class="dropdown-item">ورود به داشبورد مدیریتی</a>
+                </span>
+              @else
+                <span>
+                  <a href="{{ route('frontend.user.dashboard') }}" class="dropdown-item">ورود به داشبورد کاربر</a>
+                </span>
+              @endif
               <hr class="dropdown-divider">
               <form action="{{ route('frontend.logout') }}" method="POST" class="d-flex justify-content-center">
                 @csrf
