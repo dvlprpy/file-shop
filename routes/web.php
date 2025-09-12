@@ -14,12 +14,32 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
 use App\Http\Controllers\Frontend\FakeGatewayController;
+use App\Http\Controllers\Frontend\LoginController;
+use App\Http\Controllers\Frontend\LogoutController;
+use App\Http\Controllers\Frontend\RegisterController;
+use App\Http\Controllers\Frontend\DashboardController;
 
 
+/* User Routes */
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['namespace' => 'Frondend'], function () {
 
+    /* Login */
+    Route::get('login', [LoginController::class, 'showLoginForm'])->name('login.form');
+    Route::post('login', [LoginController::class, 'login'])->name('login');
+
+    /* Register */
+    Route::get('register', [RegisterController::class, 'showRegistrationForm'])->name('register.form');
+    Route::post('register', [RegisterController::class, 'register'])->name('register');
+
+    /* Logout */
+    Route::get('logout', [LogoutController::class, 'logout'])->name('logout');
+
+    /* User Dashboard */
+    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('user.dashboard');
+
+    /* File & Package Details */
     Route::get('/file/{file_id}', [FrontEndFileController::class, 'detail'])->name('frontend.file.detail');
     Route::get('/package/{package_id}', [FrontEndPackageController::class, 'detail'])->name('frontend.package.detail');
     Route::get('/file/{id}/thumbnail', [FrontEndFileController::class, 'privateThumbnail'])
@@ -58,6 +78,8 @@ Route::get('/admin', function () {
     return view('admin.dashboard.index');
 })->name('admin.dashboard.index');
 
+
+/* Admin Routes */
 Route::group(['prefix' => '/admin'], function () {
 
     /* 

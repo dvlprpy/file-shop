@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('subscribe_download_count');
             $table->integer('subscribe_id_payment_amount');
             $table->timestamp('subscribe_created_at')->useCurrent();
-            $table->timestamp('subscribe_expired_at')->useCurrent()->useCurrentOnUpdate();
+            $table->timestamp('subscribe_expired_at')->useCurrent();
 
             $table->foreign('subscribe_user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->foreign('subscribe_plan_id')->references('plan_id')->on('plans')->onDelete('cascade');

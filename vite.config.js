@@ -4,7 +4,7 @@ import laravel from 'laravel-vite-plugin';
 export default defineConfig({
     server: {
         host: 'larafiles.local', // اینجا همون دامنه مجازی پروژه
-        port: 5173,
+        port: 5172,
         strictPort: true,
         hmr: {
             host: 'larafiles.local',

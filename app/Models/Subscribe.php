@@ -11,9 +11,12 @@ class Subscribe extends Model
 
     protected $table = 'subscribes';
     protected $primaryKey  = 'subscribe_id';
-    const CREATED_AT = 'subscribe_created_at';
-    const UPDATED_AT = 'subscribe_expired_at';
+    public $timestamps = false;
     protected $guarded = ['subscribe_id'];
+    protected $casts = [
+        'subscribe_expired_at' => 'datetime',
+    ];
+
 
     public function user(){
         return $this->belongsTo(User::class, 'subscribe_user_id');
