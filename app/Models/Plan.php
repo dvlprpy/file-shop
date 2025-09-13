@@ -27,4 +27,9 @@ class Plan extends Model
 
         });
     }
+
+    public function subscribe()
+    {
+        return $this->hasMany(Subscribe::class, 'subscribe_plan_id');
+    }
 }

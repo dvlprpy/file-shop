@@ -47,7 +47,14 @@ Route::group([], function () {
     /* -------------------------------
      | User Dashboard
      ------------------------------- */
-    Route::get('dashboard', [DashboardController::class, 'dashboard'])->name('frontend.user.dashboard')->middleware(userDashboardMiddleWare::class);
+    
+    Route::middleware(userDashboardMiddleWare::class)->prefix('dashboard')->name('frontend.user.dashboard.')->group(function () {
+        Route::get('/', [DashboardController::class, 'Dashboard'])->name('show');
+        Route::get('/info', [DashboardController::class, 'Info'])->name('info');
+        Route::get('/edit', [DashboardController::class, 'Edit'])->name('edit');
+        Route::match(['PUT', 'POST'], '/update', [DashboardController::class, 'Update'])->name('update');
+        Route::get('/plans', [DashboardController::class, 'Plan'])->name('plan');
+    });
 
 
     /* -------------------------------

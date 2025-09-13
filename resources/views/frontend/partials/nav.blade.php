@@ -40,7 +40,7 @@
                 </span>
               @else
                 <span>
-                  <a href="{{ route('frontend.user.dashboard') }}" class="dropdown-item">ورود به داشبورد کاربر</a>
+                  <a href="{{ route('frontend.user.dashboard.show') }}" class="dropdown-item">ورود به داشبورد کاربر</a>
                 </span>
               @endif
               <hr class="dropdown-divider">

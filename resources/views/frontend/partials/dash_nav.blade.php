@@ -9,7 +9,7 @@
         
         {{-- خانه --}}
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">خانه</a>
+          <a class="nav-link active" aria-current="page" href="{{ route('frontend.user.dashboard.show') }}">خانه</a>
         </li>
 
         {{-- اطلاعات کاربری --}}
@@ -18,9 +18,9 @@
             اطلاعات کاربری
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">مشاهده اطلاعات کاریری</a></li>
+            <li><a class="dropdown-item" href="{{ route('frontend.user.dashboard.info') }}">مشاهده اطلاعات کاریری</a></li>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">ویرایش اطلاعات کاربری</a></li>
+            <li><a class="dropdown-item" href="{{ route('frontend.user.dashboard.edit') }}">ویرایش اطلاعات کاربری</a></li>
           </ul>
         </li>
 
@@ -30,7 +30,7 @@
             پلن ها
           </a>
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">مشاهده پلن های خریداری شده</a></li>
+            <li><a class="dropdown-item" href="{{ route('frontend.user.dashboard.plan') }}">مشاهده پلن های خریداری شده</a></li>
           </ul>
         </li>
 
@@ -44,15 +44,14 @@
             <li><a class="dropdown-item" href="#">ارتباط با پشتیبانی</a></li>
           </ul>
         </li>
-
       </ul>
     </div>
     <div class="dropdown">
       <button class="rounded-circle border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="{{ asset('storage/' . $user->profile_picture) }}" alt="{{ $user->fullname }}" width="50" height="50">
+        <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="{{ auth()->user()->fullname }}" width="50" class='rounded-circle' height="50">
       </button>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item text-center" href="#">{{ $user->fullname }}</a></li>
+        <li><a class="dropdown-item text-center" href="#">{{ auth()->user()->fullname }}</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="{{ route('home') }}">صفحه اصلی وبسایت</a></li>
         <li><hr class="dropdown-divider"></li>

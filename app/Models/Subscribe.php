@@ -21,4 +21,9 @@ class Subscribe extends Model
     public function user(){
         return $this->belongsTo(User::class, 'subscribe_user_id');
     }
+
+    public function plan()
+    {
+        return $this->belongsTo(Plan::class, 'subscribe_plan_id');
+    }
 }
