@@ -42,4 +42,10 @@ class Package extends Model
 
         return $this->belongsToMany(User::class, 'pivot_user_package', 'package_id', 'user_id')->withPivot(['amount','created_at','updated_at']);
     }
+
+
+    public function downloads()
+    {
+        return $this->morphMany(Download::class, 'downloadable');
+    }
 }

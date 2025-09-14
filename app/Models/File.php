@@ -42,5 +42,16 @@ class File extends Model
 
         return '/storage/app/public/images/default-avatar.svg'; // fallback
     }
+
+    public function scopePopular($query)
+    {
+        return $query->orderBy('file_download_count', 'desc');
+    }
+
+
+    public function downloads()
+    {
+        return $this->morphMany(Download::class, 'downloadable');
+    }
     
 }

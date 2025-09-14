@@ -14,7 +14,7 @@
           <a class="nav-link active" href="{{ route('home') }}">خانه</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">سبد خرید</a>
+          <a class="nav-link" href="{{ route('frontend.plan.buy') }}">مشاهده پلن ها</a>
         </li>
       </ul>
 

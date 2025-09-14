@@ -204,3 +204,13 @@ div.user-dashboard-plan-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
+
+
+
+/* Admin Index page Chat  */
+div.download-state{
+    background:#fff;
+    padding:20px;
+    border-radius:12px;
+    box-shadow:0 4px 10px rgba(0,0,0,0.08);
+}

@@ -6,9 +6,11 @@ use App\Http\Controllers\Admin\FileController;
 use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PlanController;
+use App\Http\Controllers\Admin\DownloadStatsController;
 use App\Http\Controllers\Frontend\FrontEndFileController;
 use App\Http\Controllers\Frontend\FrontEndPackageController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\FrontEndCategoryController;
 use App\Models\Package;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +22,7 @@ use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Frontend\DashboardController;
 use App\Http\Middleware\AdminMiddleWare;
 use App\Http\Middleware\userDashboardMiddleWare;
+use App\Http\Middleware\UserLoginSweetAlert;
 
 /* User Routes */
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -60,7 +63,7 @@ Route::group([], function () {
     /* -------------------------------
      | Files
      ------------------------------- */
-    Route::prefix('file')->name('frontend.file.')->group(function () {
+    Route::middleware(UserLoginSweetAlert::class)->prefix('file')->name('frontend.file.')->group(function () {
         Route::get('{file_id}', [FrontEndFileController::class, 'detail'])->name('detail');
         Route::get('{file_id}/download', [FrontEndFileController::class, 'download'])->name('download');
         Route::get('{id}/thumbnail', [FrontEndFileController::class, 'privateThumbnail'])->name('thumbnail');
@@ -71,7 +74,7 @@ Route::group([], function () {
     /* -------------------------------
      | Packages
      ------------------------------- */
-    Route::prefix('package')->name('frontend.package.')->group(function () {
+    Route::middleware(UserLoginSweetAlert::class)->prefix('package')->name('frontend.package.')->group(function () {
         Route::get('{package_id}', [FrontEndPackageController::class, 'detail'])->name('detail');
         Route::get('{package_id}/download', [FrontEndPackageController::class, 'download'])->name('download');
     });
@@ -92,6 +95,14 @@ Route::group([], function () {
         Route::get('show/{plan_id}', [FakeGatewayController::class, 'show'])->name('show');
         Route::post('pay', [FakeGatewayController::class, 'pay'])->name('pay');
     });
+
+
+    /* -------------------------------
+     | Category
+     ------------------------------- */
+    Route::prefix('/category')->name('frontend.category.')->group(function () {
+        Route::get('/detail/{category_id}', [FrontEndCategoryController::class, 'detail'])->name('detail');
+    });
 });
 
 
@@ -105,9 +116,7 @@ Route::group([], function () {
 Route::group(['prefix' => 'admin', 'middleware' => [AdminMiddleWare::class]], function () {
 
     /* 🔹 Dashboard */
-    Route::get('/', function () {
-        return view('admin.dashboard.index');
-    })->name('admin.dashboard.index');
+    Route::get('/', [DownloadStatsController::class, 'index'])->name('admin.dashboard.index');
 
     /* 🔹 User Management */
     Route::prefix('user')->name('admin.user.')->group(function () {

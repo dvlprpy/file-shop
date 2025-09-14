@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Frontend;
 
+use App\Models\Category;
 use App\Models\File;
 use App\Models\Package;
 use App\Models\Plan;
@@ -15,7 +16,9 @@ class HomeController
     {
         $files = File::paginate(10);       // 10 فایل در هر صفحه
         $packages = Package::paginate(10); // 10 پکیج در هر صفحه
-        return view('frontend.index', compact('files', 'packages'));
+        $category = Category::all(); 
+        $popular_file = File::popular()->get()->take(5);
+        return view('frontend.index', compact('files', 'packages', 'category', 'popular_file'));
     }
 
 

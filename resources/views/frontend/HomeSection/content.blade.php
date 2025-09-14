@@ -1,3 +1,5 @@
+
+{{-- List of Files --}}
 <div class="row mt-5" id="file-list">
     <h4 class="text-center mb-4 w-100">لیست فایل‌ها</h4>
     @forelse ($files as $file)
@@ -43,27 +45,29 @@
     </div>
 @endif
 
-    <div class="row mt-5" id="package-list">
-        <h4 class="text-center mb-4 w-100">لیست پکیج‌ها</h4>
-        @forelse ($packages as $package)
-            <div class="col-md-4 mb-4 d-flex">
-                <div class="card card-3d h-100 flex-fill border-success">
-                    <div class="card-body d-flex flex-column text-center">
-                        <h5 class="card-title">{{ $package->package_title }}</h5>
-                        <p class="card-text flex-grow-1 text-truncate" style="max-height: 60px;">
-                            {{ \Illuminate\Support\Str::limit($package->package_description, 80) }}
-                        </p>
-                        <p><strong>قیمت:</strong> {{ number_format($package->package_price) }} تومان</p>
-                        <a href="{{ route('frontend.package.detail', $package->package_id) }}" class="btn btn-3d btn-outline-success btn-sm mt-auto">
-                            <i class="bi bi-info-square"></i> جزئیات
-                        </a>
-                    </div>
+
+{{-- List of Package --}}
+<div class="row mt-5" id="package-list">
+    <h4 class="text-center mb-4 w-100">لیست پکیج‌ها</h4>
+    @forelse ($packages as $package)
+        <div class="col-md-4 mb-4 d-flex">
+            <div class="card card-3d h-100 flex-fill border-success">
+                <div class="card-body d-flex flex-column text-center">
+                    <h5 class="card-title">{{ $package->package_title }}</h5>
+                    <p class="card-text flex-grow-1 text-truncate" style="max-height: 60px;">
+                        {{ \Illuminate\Support\Str::limit($package->package_description, 80) }}
+                    </p>
+                    <p><strong>قیمت:</strong> {{ number_format($package->package_price) }} تومان</p>
+                    <a href="{{ route('frontend.package.detail', $package->package_id) }}" class="btn btn-3d btn-outline-success btn-sm mt-auto">
+                        <i class="bi bi-info-square"></i> جزئیات
+                    </a>
                 </div>
             </div>
-        @empty
-            @include('frontend.no-item')
-        @endforelse
-    </div>
+        </div>
+    @empty
+        @include('frontend.no-item')
+    @endforelse
+</div>
 
 @if($packages->hasMorePages())
 <div class="d-flex justify-content-center mt-3 w-100">
@@ -71,6 +75,47 @@
 </div>
 @endif
 
+{{-- List of Category --}}
+<div class="row mt-5" id="file-list">
+    <h4 class="text-center mb-4 w-100">لیست دسته بندی ها</h4>
+    @forelse ($category as $category)
+        <div class="col-md-4 mb-4 d-flex">
+            <div class="card card-3d h-100 flex-fill">
+                <div class="card-body d-flex flex-column text-center">
+                    <h5 class="card-title">{{ $category->category_name }}</h5>
+                    <a href="{{ route('frontend.category.detail', $category->category_id ) }}" class="btn btn-3d btn-outline-primary btn-sm mt-auto">
+                        <i class="bi bi-info-square"></i> جزئیات
+                    </a>
+                </div>
+            </div>
+        </div>
+    @empty
+        @include('frontend.no-item')
+    @endforelse
+</div>
+
+
+{{-- Popular Files--}}
+<div class="row mt-5" id="file-list">
+    <h4 class="text-center mb-4 w-100">محبوب ترین فایل ها</h4>
+    @forelse ($popular_file as $popular_file)
+        <div class="col-md-4 mb-4 d-flex">
+            <div class="card card-3d h-100 flex-fill">
+                <div class="card-body d-flex flex-column text-center">
+                    <h5 class="card-title">{{ $popular_file->file_title }}</h5>
+                    <p>
+                        تعداد دانلود: {{ $popular_file->file_download_count }}
+                    </p>
+                    <a href="{{ route('frontend.file.detail', $popular_file->file_id ) }}" class="btn btn-3d btn-outline-primary btn-sm mt-auto">
+                        <i class="bi bi-info-square"></i> جزئیات
+                    </a>
+                </div>
+            </div>
+        </div>
+    @empty
+        @include('frontend.no-item')
+    @endforelse
+</div>
 
 
 {{-- JS برای Load More --}}

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('file_hash', 250);
             $table->string('path');
             $table->enum('visibility', ['public', 'private'])->default('private');
+            $table->integer('file_download_count');
             $table->timestamps();
         });
     }

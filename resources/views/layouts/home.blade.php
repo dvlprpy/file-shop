@@ -9,7 +9,9 @@
 </head>
 <body>
     @include('frontend.partials.nav')
+    @include('sweetalert2::index')
 
+    
     <div class="container mt-4">
         @yield('desc')
     </div>
@@ -21,5 +23,7 @@
     <div class="container-fluid">
         @yield('footer')
     </div>
+
+    
 </body>
 </html>
