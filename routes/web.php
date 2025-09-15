@@ -1,5 +1,6 @@
 <?php
 
+/* Admin Controller */
 use App\Http\Controllers\Admin\AdminUserListController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FileController;
@@ -7,19 +8,24 @@ use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\DownloadStatsController;
+/* Front End Controller */
 use App\Http\Controllers\Frontend\FrontEndFileController;
 use App\Http\Controllers\Frontend\FrontEndPackageController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\FrontEndCategoryController;
+use App\Http\Controllers\Frontend\FakeGatewayController;
+use App\Http\Controllers\Frontend\DashboardController;
+/* Auth Controller */
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\RegisterController;
+
 use App\Models\Package;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use PHPUnit\Framework\Attributes\Group;
-use App\Http\Controllers\Frontend\FakeGatewayController;
-use App\Http\Controllers\Frontend\LoginController;
-use App\Http\Controllers\Frontend\LogoutController;
-use App\Http\Controllers\Frontend\RegisterController;
-use App\Http\Controllers\Frontend\DashboardController;
+
+/* MiddleWare */
 use App\Http\Middleware\AdminMiddleWare;
 use App\Http\Middleware\userDashboardMiddleWare;
 use App\Http\Middleware\UserLoginSweetAlert;
