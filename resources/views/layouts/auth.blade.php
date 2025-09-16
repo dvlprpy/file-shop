@@ -12,6 +12,8 @@
     <div class="container mt-4 mb-5">
         @yield('content')
     </div>
-
+    
+    <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>

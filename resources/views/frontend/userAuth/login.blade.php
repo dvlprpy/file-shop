@@ -58,7 +58,7 @@
                             {{ old('remember') ? 'checked' : '' }}>
                         <label class="form-check-label small" for="remember">مرا به خاطر بسپار</label>
                     </div>
-                    <a href="#" class="text-decoration-none small">رمز عبور را فراموش کرده‌اید؟</a>
+                    <a href="{{ route('password.forgot.form') }}" class="text-decoration-none small">رمز عبور را فراموش کرده‌اید؟</a>
                 </div>
 
                 {{-- Submit button --}}

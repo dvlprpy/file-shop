@@ -17,8 +17,14 @@ body {
 /* ============================
 Utility Classes
 ============================ */
-.cursor-pointer { cursor: pointer; }
-.admin-blade-no-padding { padding: 0; width: 96vw; }
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.admin-blade-no-padding {
+    padding: 0;
+    width: 96vw;
+}
 
 /* ============================
 Icon List Styles
@@ -47,10 +53,10 @@ Icon List Styles
 /* ============================
 Form Validation Errors
 ============================ */
-.invalid-fullname, 
-.invalid-username, 
-.invalid-email, 
-.invalid-phone, 
+.invalid-fullname,
+.invalid-username,
+.invalid-email,
+.invalid-phone,
 .invalid-password {
     display: none;
     color: #dc3545;
@@ -67,7 +73,7 @@ Table Container & Scroll
 
 .table-responsive-xl {
     overflow-x: auto;
-    overflow-y: auto; 
+    overflow-y: auto;
     max-height: 70vh;
 
     &::-webkit-scrollbar {
@@ -89,8 +95,13 @@ Horizontal Scroll Buttons
     padding: 0.3rem;
 }
 
-.scroll-btn.left { left: 0.5rem; }
-.scroll-btn.right { right: 0.5rem; }
+.scroll-btn.left {
+    left: 0.5rem;
+}
+
+.scroll-btn.right {
+    right: 0.5rem;
+}
 
 
 /* اگر خواستی فقط th ها محدود باشند */
@@ -102,15 +113,19 @@ Horizontal Scroll Buttons
 
 /* ========= تصویر پروفایل در جدول ========= */
 .table-profile-img {
-    width: 200px;       /* یا اندازه مناسب */
+    width: 200px;
+    /* یا اندازه مناسب */
     height: 200px;
-    object-fit: contain; /* حفظ نسبت تصویر */
-    border-radius: 15px; /* گرد کردن تصویر */
-    margin: 0 auto;   /* وسط چین کردن در td */
+    object-fit: contain;
+    /* حفظ نسبت تصویر */
+    border-radius: 15px;
+    /* گرد کردن تصویر */
+    margin: 0 auto;
+    /* وسط چین کردن در td */
 }
 
 
-.horizontal-vertical-align{
+.horizontal-vertical-align {
     text-align: center;
     vertical-align: middle;
 }
@@ -202,15 +217,85 @@ p.p-desc {
 /* user Dashboard Plan Card */
 div.user-dashboard-plan-card:hover {
     transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 
 
 /* Admin Index page Chat  */
-div.download-state{
-    background:#fff;
-    padding:20px;
-    border-radius:12px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.08);
+div.download-state {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Password forgot */
+.password-forgot-1 {
+    max-width: 480px;
+    margin: 60px auto;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, .1);
+    overflow: hidden;
+}
+
+.password-forgot-header {
+    background: #4CAF50;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+div.password-forgot-header>h2 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.password-forgot-body {
+    padding: 25px;
+}
+
+.password-forgot-body>p {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555;
+    margin-bottom: 20px;
+    text-align: justify;
+    text-align: center;
+}
+
+.password-forgot-body>form>label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.password-forgot-body>form>input {
+    width: 100%;
+    padding: 12px 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+}
+
+.password-forgot-body>form>input+div {
+    color: red;
+    font-size: 13px;
+}
+
+.password-forgot-body>form>input+button {
+    width: 100%;
+    padding: 12px;
+    background: #4CAF50;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    margin-top: 8px;
 }

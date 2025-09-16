@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\PackageController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\PlanController;
 use App\Http\Controllers\Admin\DownloadStatsController;
+use App\Http\Controllers\Auth\ForgotPasswordController;
+
 /* Front End Controller */
 use App\Http\Controllers\Frontend\FrontEndFileController;
 use App\Http\Controllers\Frontend\FrontEndPackageController;
@@ -15,11 +17,13 @@ use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\FrontEndCategoryController;
 use App\Http\Controllers\Frontend\FakeGatewayController;
 use App\Http\Controllers\Frontend\DashboardController;
+
 /* Auth Controller */
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\RegisterController;
 
+/* Other */
 use App\Models\Package;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
@@ -54,9 +58,25 @@ Route::group([], function () {
 
 
     /* -------------------------------
+     | Forgot Password
+     ------------------------------- */
+    Route::prefix('password/forgot')->name('password.forgot.')->group(function(){
+        Route::get('/', [ForgotPasswordController::class, 'showRquestEmaliForm'])->name('form');
+        Route::post('/', [ForgotPasswordController::class, 'showResetEmail'])->name('form.request');
+
+        Route::get('/verify', [ForgotPasswordController::class, 'verifyToken'])->name('verify');
+        Route::post('/verifyMail', [ForgotPasswordController::class, 'verify'])->name('verify.update');
+
+        Route::get('/reset', [ForgotPasswordController::class, 'showResetForm'])->name('reset');
+        Route::post('/reset', [ForgotPasswordController::class, 'reset'])->name('update');
+    });
+
+
+
+
+    /* -------------------------------
      | User Dashboard
      ------------------------------- */
-    
     Route::middleware(userDashboardMiddleWare::class)->prefix('dashboard')->name('frontend.user.dashboard.')->group(function () {
         Route::get('/', [DashboardController::class, 'Dashboard'])->name('show');
         Route::get('/info', [DashboardController::class, 'Info'])->name('info');

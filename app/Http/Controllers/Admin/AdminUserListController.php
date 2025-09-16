@@ -79,7 +79,7 @@ class AdminUserListController extends Controller
         // تنظیم مقادیر اضافی
         // $validated['password'] = Hash::make($validated['password']);
 
-    
+
         // تعیین role و wallet بر اساس نقش ثبت‌کننده
         if (Auth::check() && Auth::user()->role === 'adminsystem') {
             if ($request->filled('wallet')) {
@@ -122,29 +122,29 @@ class AdminUserListController extends Controller
     {
 
         if ($user_id && ctype_digit($user_id)) {
-            
+
             $find_user_id = User::find($user_id);
 
             if ($find_user_id && $find_user_id instanceof User) {
-                
+
                 $find_user_id->delete();
 
                 return redirect()->route('admin.user.list')->with('success', 'کاربر مورد نظر با موفقیت حذف گردید.');
             }
         }
-
     }
 
 
     /* Edit User */
-    public function edit($user_id){
+    public function edit($user_id)
+    {
 
         if ($user_id && ctype_digit($user_id)) {
-            
+
             $user_item = User::find($user_id);
 
             if ($user_item && $user_item instanceof User) {
-                
+
                 return view('admin.user.edit', compact('user_item'));
             }
         }
@@ -154,7 +154,7 @@ class AdminUserListController extends Controller
     /* update User */
     public function update(Request $request, $user_id)
     {
-       $user = User::findOrFail($user_id);
+        $user = User::findOrFail($user_id);
 
         $validated = $request->validate([
             'fullname'        => 'required|string|max:255',
@@ -210,7 +210,7 @@ class AdminUserListController extends Controller
     public function package(Request $request, $user_id)
     {
         $user_find = User::where('user_id', $user_id)->firstOrFail();
-        
+
         $find_user_package = $user_find->packages()->get();
 
         // dd($find_user_package);
@@ -243,7 +243,7 @@ class AdminUserListController extends Controller
     public function updateSelectPackage(UpdateSelectedUserPackage $request, $user_id)
     {
         $user = User::where('user_id', $user_id)->firstOrFail();
-        
+
 
         // بررسی اینکه packages به شکل آرایه ارسال شده است
         $packages = is_array($request->packages) ? $request->packages : [];
@@ -265,5 +265,4 @@ class AdminUserListController extends Controller
 
         return redirect()->route('admin.user.list')->with('success', 'پکیج‌ها با موفقیت به کاربر اضافه شدند.');
     }
-
 }

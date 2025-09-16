@@ -9,7 +9,6 @@
 </head>
 <body>
     @include('frontend.partials.nav')
-    @include('sweetalert2::index')
 
     
     <div class="container mt-4">
@@ -24,6 +23,7 @@
         @yield('footer')
     </div>
 
-    
+    <script src="{{ asset('js/sweetalert2.all.min.js') }}"></script>
+    @yield('scripts')
 </body>
 </html>
