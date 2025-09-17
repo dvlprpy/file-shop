@@ -23,10 +23,10 @@
         </div>
 
         <ul class="list-group list-group-flush text-center">
-            <li class="list-group-item">تاریخ عضویت: {{ $user->created_at->format('Y-m-d') }}</li>
+            <li class="list-group-item">تاریخ عضویت: {{ \Morilog\Jalali\Jalalian::forge($user->created_at->format('Y-m-d'))->format('%A, %d %B %Y');  }}</li>
             <li class="list-group-item">تعداد خریدها: {{ $user->purchases_count ?? 0 }}</li>
             <li class="list-group-item">پلن فعال: {{ $user->plan_name ?? 'ندارد' }}</li>
-            <li class="list-group-item">موجودی کیف پول: {{ $user->wallet ?? 0 }}</li>
+            <li class="list-group-item">موجودی کیف پول: {{ $user->wallet ?? 0 }} تومان</li>
         </ul>
 
         <div class="card-body text-center">

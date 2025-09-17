@@ -101,9 +101,9 @@ class DashboardController extends Controller
         $plans = Plan::whereIn('plan_id', $subscribePlanIds)->get(); */
 
         $subscribe = Subscribe::with('plan')->where('subscribe_user_id', $user_id)->get();
-
+        
         $user = Auth::user();
-
+        // dd($user);
         return view('frontend.dashboard.plan', compact('subscribe', 'user'));
     }
 }
