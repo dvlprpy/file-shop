@@ -37,7 +37,7 @@ class File extends Model
 
         if ($this->visibility === 'private') {
             // برای private باید یه روت واسط داشته باشیم
-            return route('files.private.thumbnail', $this->file_id );
+            return route('frontend.file.thumbnail', $this->file_id );
         }
 
         return '/storage/app/public/images/default-avatar.svg'; // fallback
