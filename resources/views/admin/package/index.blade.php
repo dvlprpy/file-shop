@@ -26,6 +26,7 @@
                     <th scope="col" class="text-center">شناسه پکیج</th>
                     <th scope="col" class="text-center">تعداد فایل ها</th>
                     <th scope="col" class="text-center">دسته بندی پکیج ها</th>
+                    <th scope="col" class="text-center">لیست فایل های پکیج</th>
                     <th scope="col" class="text-center">عملیات</th>
                 </tr>
             </thead>
@@ -47,6 +48,17 @@
                                 @else
                                     @foreach ($dataItem->categories as $cat)
                                         <span class="badge bg-success">{{ $cat->category_name }}</span>
+                                    @endforeach
+                                @endif
+                            </td>
+
+                            {{-- نمایش لیست فایل های مرتبط با پکیج--}}
+                            <td class="text-center">
+                                @if ($dataItem->files->isEmpty())
+                                    <span class="badge bg-secondary">بدون دسته بندی</span>
+                                @else
+                                    @foreach ($dataItem->files as $file_list)
+                                        <span class="badge bg-primary">{{ $file_list->file_title }}</span>
                                     @endforeach
                                 @endif
                             </td>

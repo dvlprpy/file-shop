@@ -100,7 +100,8 @@ Route::group([], function () {
      ------------------------------- */
     Route::middleware(UserLoginSweetAlert::class)->prefix('package')->name('frontend.package.')->group(function () {
         Route::get('{package_id}', [FrontEndPackageController::class, 'detail'])->name('detail');
-        Route::get('{package_id}/download', [FrontEndPackageController::class, 'download'])->name('download');
+        Route::post('{package_id}/download', [FrontEndPackageController::class, 'download'])->name('download');
+        Route::get('preview/{package_id}', [FrontEndPackageController::class, 'preview'])->name('preview');
     });
     Route::get('packages/load_more', [FrontEndPackageController::class, 'loadMore'])->name('frontend.packages.load_more');
 

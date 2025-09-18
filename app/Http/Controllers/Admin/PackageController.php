@@ -15,10 +15,10 @@ class PackageController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         // بارگذاری پکیج‌ها به همراه دسته‌بندی‌ها
-        $data = Package::with('categories')->get();
+        $data = Package::with(['categories', 'files'])->get();
 
         return view('admin.package.index', compact('data'));
     }
