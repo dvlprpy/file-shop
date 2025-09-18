@@ -5,13 +5,11 @@
 /public/storage
 /public/build
 /storage/*.key
-/storage/pail
 .env
 .env.backup
 .env.production
 .phpunit.result.cache
 /.phpunit.cache
-/bootstrap/cache/*.php
 
 
 # Homestead
@@ -60,7 +58,11 @@ pnpm-debug.log*
 
 
 # Optional: cache & compiled files
-/bootstrap/cache/*.php
+# /bootstrap/cache/*.php
+/bootstrap/cache/*
+!/bootstrap/cache/.gitignore
+!/bootstrap/cache/packages.php
+!/bootstrap/cache/services.php
 
 
 # Ignore backup files
