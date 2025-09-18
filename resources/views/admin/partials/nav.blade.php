@@ -5,7 +5,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav flex-grow-1">
 
         {{-- خانه --}}
         <li class="nav-item">
@@ -83,6 +83,24 @@
         </li>
 
       </ul>
+
+      <div class="dropdown">
+      <button class="rounded-circle border" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <img src="{{ asset('storage/' . auth()->user()->profile_picture) }}" alt="{{ auth()->user()->fullname }}" width="50" class='rounded-circle' height="50">
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item text-center" href="#">{{ auth()->user()->fullname }}</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="{{ route('home') }}">صفحه اصلی وبسایت</a></li>
+        <li><hr class="dropdown-divider"></li>
+        <li><a class="dropdown-item" href="#">
+          <form action="{{ route('frontend.logout') }}" method="post">
+            @csrf 
+            <button class='btn btn-outline-danger'>خروج از حساب کاربری</button> 
+          </form>  
+        </a></li>
+      </ul>
+    </div>
     </div>
   </div>
 </nav>
