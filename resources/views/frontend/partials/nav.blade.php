@@ -15,6 +15,9 @@
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{{ route('frontend.plan.buy') }}">مشاهده پلن ها</a>
+        </li>        
+        <li class="nav-item">
+          <a class="nav-link" href="{{ route('frontend.aboutus') }}">درباره ما</a>
         </li>
       </ul>
 

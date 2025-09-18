@@ -127,6 +127,12 @@ Route::group([], function () {
     Route::prefix('/category')->name('frontend.category.')->group(function () {
         Route::get('/detail/{category_id}', [FrontEndCategoryController::class, 'detail'])->name('detail');
     });
+
+
+    /* -------------------------------
+     | About Us
+     ------------------------------- */
+    Route::get('/aboutus', [HomeController::class, 'about'])->name('frontend.aboutus');
 });
 
 

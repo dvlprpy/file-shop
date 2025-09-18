@@ -39,4 +39,11 @@ class HomeController
         $jalali_date_next = Jalalian::fromCarbon(Carbon::now())->addDays($plan_purch->plan_day);
         return view('frontend.plan.purchase_plan', compact('plan_purch','jalali_date_now', 'jalali_date_next'));
     }
+
+
+    /* About Us Page */
+    public function about()
+    {
+        return view('frontend.partials.about');
+    }
 }
