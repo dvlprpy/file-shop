@@ -2,6 +2,17 @@
 
 @section('content')
 
+    @if (session('error'))
+        @section('scripts')
+            <script>
+                Swal.fire(@json(session('error')));
+            </script>
+        @endsection
+    @endif
+
+
+
+
     <div class="container py-5">
 
         <!-- اگر فایل پاس داده شده بود -->
@@ -114,47 +125,53 @@
                 <span class="badge bg-success">{{ $package->package_title }}</span>
             </h3>
             <div class="row mt-4">
-                @foreach ($package_file_list as $list)
-                    @php
-                        $sizelist = (int) $list->file_size;
-                        $readable = number_format($sizelist / 1048576, 2) . ' MB';
-                        $imageUrl = $list->visibility === 'public'
-                            ? asset('storage/' . $list->path)
-                            : route('frontend.package.preview', $list->file_id);
-                    @endphp
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100 border-0 shadow-sm rounded-4 hover-shadow">
-                            <img src="{{ $imageUrl }}" class="card-img-top rounded-top-4" alt="{{ $list->file_title }}">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ $list->file_title }}</h5>
-                                <p class="card-text text-muted small">{{ $list->file_description }}</p>
+                @if ($package_file_list && count($package_file_list) > 0)
+                    @foreach ($package_file_list as $list)
+                        @php
+                            $sizelist = (int) $list->file_size;
+                            $readable = number_format($sizelist / 1048576, 2) . ' MB';
+                            $imageUrl = $list->visibility === 'public'
+                                ? asset('storage/' . $list->path)
+                                : route('frontend.package.preview', $list->file_id);
+                        @endphp
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100 border-0 shadow-sm rounded-4 hover-shadow">
+                                <img src="{{ $imageUrl }}" class="card-img-top rounded-top-4" alt="{{ $list->file_title }}">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $list->file_title }}</h5>
+                                    <p class="card-text text-muted small">{{ $list->file_description }}</p>
+                                </div>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item d-flex align-items-center">
+                                        <strong class="me-2">فرمت:</strong>
+                                        @switch($list->file_type)
+                                            @case('pdf')
+                                                <i class="bi bi-filetype-pdf fs-4 text-danger"></i>
+                                                @break
+                                            @case('doc')
+                                                <i class="bi bi-filetype-doc fs-4 text-primary"></i>
+                                                @break
+                                            @case('image/jpg')
+                                            @case('image/png')
+                                            @case('image/jpeg')
+                                                <i class="bi bi-image fs-4 text-success"></i>
+                                                @break
+                                            @default
+                                                <i class="bi bi-file-earmark fs-4 text-secondary"></i>
+                                        @endswitch
+                                    </li>
+                                    <li class="list-group-item">
+                                        <strong>حجم:</strong> {{ $readable }}
+                                    </li>
+                                </ul>
                             </div>
-                            <ul class="list-group list-group-flush">
-                                <li class="list-group-item d-flex align-items-center">
-                                    <strong class="me-2">فرمت:</strong>
-                                    @switch($list->file_type)
-                                        @case('pdf')
-                                            <i class="bi bi-filetype-pdf fs-4 text-danger"></i>
-                                            @break
-                                        @case('doc')
-                                            <i class="bi bi-filetype-doc fs-4 text-primary"></i>
-                                            @break
-                                        @case('image/jpg')
-                                        @case('image/png')
-                                        @case('image/jpeg')
-                                            <i class="bi bi-image fs-4 text-success"></i>
-                                            @break
-                                        @default
-                                            <i class="bi bi-file-earmark fs-4 text-secondary"></i>
-                                    @endswitch
-                                </li>
-                                <li class="list-group-item">
-                                    <strong>حجم:</strong> {{ $readable }}
-                                </li>
-                            </ul>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                @else
+                    <p class='text-center text-muted fs-6'>
+                        هیچ اطلاعاتی برای نمایش وجود ندارد.
+                    </p>
+                @endif
             </div>
         @endisset
     </div>

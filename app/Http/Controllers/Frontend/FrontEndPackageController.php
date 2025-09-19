@@ -50,13 +50,25 @@ class FrontEndPackageController extends Controller
         $fileIds = $request->input('files', []);
 
         if (empty($fileIds)) {
-            return redirect()->back()->with('error', 'هیچ فایلی برای دانلود انتخاب نشده است.');
+            return redirect()->back()->with('error', [
+                'icon' => "error",
+                'title' => "خطا ",
+                'text' => 'هیچ فایلی برای دانلود انتخاب نشده است.',
+                'confirmButtonText' => 'باشه',
+                'footer' => '<a href="http://larafiles.local/">بازگشت به صفحه اصلی سایت</a>',
+            ]);
         }
 
         $files = $package->files()->whereIn('files.file_id', $fileIds)->get();
 
         if ($files->isEmpty()) {
-            return redirect()->back()->with('error', 'فایل‌های انتخاب شده موجود نیستند.');
+            return redirect()->back()->with('error', [
+                'icon' => "error",
+                'title' => "خطا ",
+                'text' => 'فایل‌های انتخاب شده موجود نیستند.',
+                'confirmButtonText' => 'باشه',
+                'footer' => '<a href="http://larafiles.local/">بازگشت به صفحه اصلی سایت</a>',
+            ]);
         }
 
         // نام فایل ZIP
@@ -86,7 +98,13 @@ class FrontEndPackageController extends Controller
 
             $zip->close();
         } else {
-            return redirect()->back()->with('error', 'خطا در ساخت فایل ZIP.');
+            return redirect()->back()->with('error', [
+                'icon' => "error",
+                'title' => "خطا",
+                'text' => 'خطا در ساخت فایل ZIP.',
+                'confirmButtonText' => 'باشه',
+                'footer' => '<a href="http://larafiles.local/">بازگشت به صفحه اصلی سایت</a>',
+            ]);
         }
 
         // برگرداندن فایل ZIP برای دانلود
