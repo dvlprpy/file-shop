@@ -131,7 +131,6 @@ php artisan serve
 
 مثال‌های درج تصویر:
 
-```markdown
 ![صفحه اصلی](/screenshots/home.png)
 ![داشبورد ادمین](/screenshots/admin-dashboard.png)
 ![داشبورد کاربر](/screenshots/user-dashboard.png)
@@ -143,7 +142,6 @@ php artisan serve
 ![صفحه ثبت نام](/screenshots/register.png)
 ![صفحه لیست پلن ها](/screenshots/plan-list.png)
 ![درگاه پرداخت فیک](/screenshots/fake-gateway.png)
-```
 
 ---
 
