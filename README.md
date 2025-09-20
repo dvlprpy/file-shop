@@ -113,6 +113,111 @@ php artisan serve
 
 ---
 
+## ⚙️ ایجاد دامین مجازی (Virtual Host)
+
+برای اجرای پروژه با یک دامین محلی (مثلاً `fileshop.local`) می‌توانید تنظیمات زیر را اعمال کنید:
+
+
+ 
+   **چنانچه دامین مجازی ایجاد کردید لطفا کد زیر را در قسمت مربوطه در فایل vite.config.js قرار دهید.**
+  ```php
+  server: {
+        host: 'fileshop.local', // اینجا همون دامنه مجازی پروژه
+        port: 5172,
+        strictPort: true,
+        hmr: {
+            host: 'fileshop.local',
+            protocol: 'http',
+        },
+    },
+  ```
+
+
+### تنظیمات در ویندوز (XAMPP)
+
+1. فایل پیکربندی Apache را باز کنید:
+
+```
+c:/xampp/apache/conf/extra/httpd-vhosts.conf
+```
+
+2. یک بلوک `<VirtualHost>` اضافه کرده و آن را از حالت کامنت خارج کنید. مثلاً:
+
+```apache
+<VirtualHost *:80>
+    ServerAdmin admin@fileshop.local
+    DocumentRoot "C:/xampp/htdocs/fileshop/public"
+    ServerName fileshop.local
+    ErrorLog "logs/fileshop.local-error.log"
+    CustomLog "logs/fileshop.local-access.log" common
+</VirtualHost>
+```
+
+3. فایل `hosts` ویندوز را باز کنید:
+
+```
+C:/windows/system32/drivers/etc/hosts
+```
+
+در انتهای فایل خط زیر را اضافه کنید:
+
+```
+127.0.0.1   fileshop.local
+```
+
+4. حالا می‌توانید با اجرای XAMPP پروژه را از طریق مرورگر با آدرس زیر باز کنید:
+
+```
+http://fileshop.local
+```
+
+### تنظیمات در لینوکس (Apache)
+
+1. فایل پیکربندی Virtual Host را باز کنید یا ایجاد کنید. معمولاً مسیر آن:
+
+```
+/etc/apache2/sites-available/fileshop.conf
+```
+
+2. محتوای زیر را داخل فایل قرار دهید:
+
+```apache
+<VirtualHost *:80>
+    ServerAdmin admin@fileshop.local
+    DocumentRoot /var/www/fileshop/public
+    ServerName fileshop.local
+    ErrorLog ${APACHE_LOG_DIR}/fileshop-error.log
+    CustomLog ${APACHE_LOG_DIR}/fileshop-access.log combined
+</VirtualHost>
+```
+
+3. فایل را ذخیره کنید و سپس سایت را فعال کنید:
+
+```bash
+sudo a2ensite fileshop.conf
+sudo systemctl reload apache2
+```
+
+4. فایل hosts لینوکس را ویرایش کنید:
+
+```
+sudo nano /etc/hosts
+```
+
+در انتهای فایل خط زیر را اضافه کنید:
+
+```
+127.0.0.1   fileshop.local
+```
+
+5. حالا می‌توانید پروژه را در مرورگر با آدرس زیر باز کنید:
+
+```
+http://fileshop.local
+```
+
+---
+
 ## 📁 ساختار مسیرهای (Routes)
 
 مسیرهای مهم پروژه:
@@ -220,106 +325,3 @@ chmod -R 775 storage bootstrap/cache
 در صورت سوال یا نیاز به کمک بیشتر، لطفاً در Issues ریپوزیتوری پیام بذارید یا با صاحب پروژه تماس بگیرید.
 
 ---
-
-## ⚙️ ایجاد دامین مجازی (Virtual Host)
-
-برای اجرای پروژه با یک دامین محلی (مثلاً `fileshop.local`) می‌توانید تنظیمات زیر را اعمال کنید:
-
-
- 
-   **چنانچه دامین مجازی ایجاد کردید لطفا کد زیر را در قسمت مربوطه در فایل vite.config.js قرار دهید.**
-  ```php
-  server: {
-        host: 'fileshop.local', // اینجا همون دامنه مجازی پروژه
-        port: 5172,
-        strictPort: true,
-        hmr: {
-            host: 'fileshop.local',
-            protocol: 'http',
-        },
-    },
-  ```
-
-
-### تنظیمات در ویندوز (XAMPP)
-
-1. فایل پیکربندی Apache را باز کنید:
-
-```
-c:/xampp/apache/conf/extra/httpd-vhosts.conf
-```
-
-2. یک بلوک `<VirtualHost>` اضافه کرده و آن را از حالت کامنت خارج کنید. مثلاً:
-
-```apache
-<VirtualHost *:80>
-    ServerAdmin admin@fileshop.local
-    DocumentRoot "C:/xampp/htdocs/fileshop/public"
-    ServerName fileshop.local
-    ErrorLog "logs/fileshop.local-error.log"
-    CustomLog "logs/fileshop.local-access.log" common
-</VirtualHost>
-```
-
-3. فایل `hosts` ویندوز را باز کنید:
-
-```
-C:/windows/system32/drivers/etc/hosts
-```
-
-در انتهای فایل خط زیر را اضافه کنید:
-
-```
-127.0.0.1   fileshop.local
-```
-
-4. حالا می‌توانید با اجرای XAMPP پروژه را از طریق مرورگر با آدرس زیر باز کنید:
-
-```
-http://fileshop.local
-```
-
-### تنظیمات در لینوکس (Apache)
-
-1. فایل پیکربندی Virtual Host را باز کنید یا ایجاد کنید. معمولاً مسیر آن:
-
-```
-/etc/apache2/sites-available/fileshop.conf
-```
-
-2. محتوای زیر را داخل فایل قرار دهید:
-
-```apache
-<VirtualHost *:80>
-    ServerAdmin admin@fileshop.local
-    DocumentRoot /var/www/fileshop/public
-    ServerName fileshop.local
-    ErrorLog ${APACHE_LOG_DIR}/fileshop-error.log
-    CustomLog ${APACHE_LOG_DIR}/fileshop-access.log combined
-</VirtualHost>
-```
-
-3. فایل را ذخیره کنید و سپس سایت را فعال کنید:
-
-```bash
-sudo a2ensite fileshop.conf
-sudo systemctl reload apache2
-```
-
-4. فایل hosts لینوکس را ویرایش کنید:
-
-```
-sudo nano /etc/hosts
-```
-
-در انتهای فایل خط زیر را اضافه کنید:
-
-```
-127.0.0.1   fileshop.local
-```
-
-5. حالا می‌توانید پروژه را در مرورگر با آدرس زیر باز کنید:
-
-```
-http://fileshop.local
-```
