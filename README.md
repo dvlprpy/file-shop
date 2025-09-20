@@ -225,6 +225,22 @@ chmod -R 775 storage bootstrap/cache
 
 برای اجرای پروژه با یک دامین محلی (مثلاً `fileshop.local`) می‌توانید تنظیمات زیر را اعمال کنید:
 
+
+ 
+   **چنانچه دامین مجازی ایجاد کردید لطفا کد زیر را در قسمت مربوطه در فایل vite.config.js قرار دهید.**
+  ```php
+  server: {
+        host: 'fileshop.local', // اینجا همون دامنه مجازی پروژه
+        port: 5172,
+        strictPort: true,
+        hmr: {
+            host: 'fileshop.local',
+            protocol: 'http',
+        },
+    },
+  ```
+
+
 ### تنظیمات در ویندوز (XAMPP)
 
 1. فایل پیکربندی Apache را باز کنید:
