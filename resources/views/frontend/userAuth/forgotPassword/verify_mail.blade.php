@@ -2,13 +2,8 @@
 
 @section('content')
     
-{{-- <script src="{{ asset('js/sweetalert2@11.js') }}"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script> --}}
-
-
-
   <div class="d-flex justify-content-center align-items-center min-vh-100">
-      <div class="card shadow-lg border-0 rounded-4 p-4 w-75" {{-- style="max-width: 420px; width: 100%;" --}}>
+      <div class="card shadow-lg border-0 rounded-4 p-4 w-75" >
           <div class="text-center mb-2">
               <h3 class="fw-bold mb-4">👋 کد تایید</h3>
               <p class="text-muted small">

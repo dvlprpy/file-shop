@@ -6,9 +6,7 @@
             margin-top:5px;
             margin-bottom: 3px
             ">{{ $file->file_title }}</h1>
-    {{-- {{
-        dd($file)
-    }} --}}
+            
     <img src="{{ route('access.file', $file->file_id) }}" alt="{{ $file->file_original_name }}" style="max-width: 80vw;max-height: 80vh;">
 
 

@@ -81,24 +81,8 @@ class DashboardController extends Controller
     /* Show User Purchase Plans */
     public function Plan()
     {
-        /* 
-        subscribe_download_limit
-        subscribe_download_count
-        subscribe_created_at
-        subscribe_expired_at
-        */
         // Step 1: Get User Id
         $user_id = Auth::id();
-
-        /* $subscribePlan = Subscribe::where('subscribe_user_id', $user_id)
-            ->get(); 
-
-        // Step 2: Get subscribed plan ids
-        $subscribePlanIds = Subscribe::where('subscribe_user_id', $user_id)
-            ->pluck('subscribe_plan_id'); 
-
-        // Step 3: Get plans by these ids
-        $plans = Plan::whereIn('plan_id', $subscribePlanIds)->get(); */
 
         $subscribe = Subscribe::with('plan')->where('subscribe_user_id', $user_id)->get();
         

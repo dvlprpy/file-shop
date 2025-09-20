@@ -132,7 +132,7 @@ class ForgotPasswordController extends Controller
 
         // بررسی منقضی شدن توکن (مثلاً 60 دقیقه)
         if (Carbon::parse($record->created_at)->addMinutes(5)->isPast()) {
-            // return back()->withErrors(['token' => 'توکن منقضی شده است. لطفاً دوباره درخواست دهید.']);
+            
             return redirect()->route('password.forgot.form')->with('token_time_expire', [
                 'title' => 'پایان زمان اعتبار توکن امنیتی',
                 'text' => 'کاربر گرامی با توجه به اینکه توکن های امنیتی فقط 5 دقیقه اعتبار دارند لذا زمان اعتبار توکن امنیتی شما به پایان رسیده است لطفا دوباره تلاش کنید.',

@@ -3,7 +3,7 @@
 @section('content')
 
   <div class="d-flex justify-content-center align-items-center min-vh-100">
-      <div class="card shadow-lg border-0 rounded-4 p-4 w-75" {{-- style="max-width: 420px; width: 100%;" --}}>
+      <div class="card shadow-lg border-0 rounded-4 p-4 w-75" >
           <div class="text-center mb-2">
               <h3 class="fw-bold mb-4">👋 تنظیم رمز عبور جدید</h3>
               <p class="text-muted small">

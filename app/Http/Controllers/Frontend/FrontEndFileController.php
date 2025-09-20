@@ -20,7 +20,6 @@ class FrontEndFileController extends Controller
         $file = File::find($file_id);
         $user_id = Auth::user()->user_id; /* user id */
         $subscription = SubscriptionChecker::checkUserSubscription($user_id); /* check user subscribe */
-        // dd($file, $user_id, $subscription);
         return view('frontend.files.detail', compact('file', 'subscription'));
     }
 
